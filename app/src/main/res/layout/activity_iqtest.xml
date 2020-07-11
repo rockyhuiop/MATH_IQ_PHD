@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.1"
+        android:id="@+id/tvPlayer" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@drawable/titlevector16"
+        android:layout_weight="0.1">
+
+        <TextView
+            android:id="@+id/tvCorrect"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.6"
+            android:fontFamily="@font/double_bubble_shadow"
+            android:gravity="right|center_vertical"
+            android:paddingTop="10dp"
+            android:text="1"
+            android:textColor="#FBE251"
+            android:textSize="16pt" />
+
+        <TextView
+            android:id="@+id/indicator"
+            android:paddingLeft="10dp"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:alpha="0"
+            android:gravity="center_vertical"
+            android:fontFamily="@font/double_bubble_shadow"
+            android:textSize="16pt"
+            android:paddingTop="10dp"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"
+            android:fontFamily="@font/double_bubble_shadow"
+            android:textColor="#FFFFFF"
+            android:textSize="16pt"
+            android:paddingTop="10dp"
+            android:id="@+id/tvQuestionNo"
+            android:gravity="center"
+            android:text="1 / 5"/>
+
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="300dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/questionbg" />
+
+        <TextView
+            android:gravity="center"
+            android:textColor="#FFFFFF"
+            android:textSize="12pt"
+            android:fontFamily="@font/vtks_chalk_79"
+            android:layout_marginTop="80dp"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/question" />
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:orientation="vertical"
+        android:layout_weight="1.5"
+        android:paddingLeft="50dp"
+        android:paddingRight="50dp"
+        android:paddingBottom="40dp"
+        android:paddingTop="0dp">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/A1"
+            android:layout_marginBottom="10dp"
+            android:onClick="btnA1"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/A2"
+            android:layout_marginBottom="10dp"
+            android:onClick="btnA2"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/A3"
+            android:layout_marginBottom="10dp"
+            android:onClick="btnA3"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/A4"
+            android:layout_marginBottom="10dp"
+            android:onClick="btnA4"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>
