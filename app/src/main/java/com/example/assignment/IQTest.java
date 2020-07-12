@@ -35,6 +35,8 @@ public class IQTest extends AppCompatActivity {
 
     DataBase db;
     String startTime;
+    LocalTime questionStart;
+    double avgSpent;
     String playerName;
     int testNo;
     int questionNo;
@@ -56,6 +58,7 @@ public class IQTest extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN); //enable full screen
         setContentView(R.layout.activity_iqtest);
 
+        questionStart = LocalTime.now();
         local = getIntent();
         playerName = local.getStringExtra("playerName");
 
@@ -77,6 +80,7 @@ public class IQTest extends AppCompatActivity {
 
         if(questionNo <= 5) {
             if(questionNo < 1){
+                avgSpent = 0;
                 questionNo = 1;
                 questionIndex = genRandom();
                 testNo = db.getMaximumTestNo()+1;
@@ -84,6 +88,7 @@ public class IQTest extends AppCompatActivity {
                 Date startDate = new Date();
                 db.insertTestLog(testNo, this.playerName, startDate, startTime);
             }else {
+                avgSpent = local.getDoubleExtra("avgSpent", 0);
                 questionIndex = local.getIntArrayExtra("questionIndex");
                 testNo = local.getIntExtra("testNo", 0);
                 startTime = local.getStringExtra("startTime");
@@ -99,14 +104,18 @@ public class IQTest extends AppCompatActivity {
             tvCorrect.setText(""+correctCount);
             setAnswers(question[1]);
         }else {
+            avgSpent = local.getDoubleExtra("avgSpent", 0);
             startTime = local.getStringExtra("startTime");
             testNo = local.getIntExtra("testNo", 0);
             double duration = LocalTime.parse(startTime).until(LocalTime.now(), ChronoUnit.SECONDS);
             db.updateTestLog(testNo, duration, correctCount);
+
+
             Intent intent = new Intent(IQTest.this, Finish.class);
             intent.putExtra("playerName", this.playerName);
             intent.putExtra("result",this.correctCount);
             intent.putExtra("duration", duration);
+            intent.putExtra("avgSpent", avgSpent);
             startActivity(intent);
             db.close();
             finish();
@@ -157,6 +166,7 @@ public class IQTest extends AppCompatActivity {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void nextQuestion(String yourAnswer){
         db.insertTestDetails(testNo, questionIndex[questionNo-1]+1, this.question[0],
                 Integer.parseInt(this.question[1]), Integer.parseInt(yourAnswer), isCorrect(yourAnswer));
@@ -171,6 +181,7 @@ public class IQTest extends AppCompatActivity {
             indicator.setAlpha(1.0f);
             indicator.setTextColor(ContextCompat.getColor(this, R.color.wrong));
         }
+        avgSpent += questionStart.until(LocalTime.now(),ChronoUnit.SECONDS) * 0.2;
 
 
 
@@ -179,6 +190,7 @@ public class IQTest extends AppCompatActivity {
 
         questionNo++;
 
+        local.putExtra("avgSpent", avgSpent);
         local.putExtra("questionIndex",questionIndex);
         local.putExtra("startTime", startTime);
         local.putExtra("testNo", testNo);

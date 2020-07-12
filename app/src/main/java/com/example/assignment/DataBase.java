@@ -179,4 +179,29 @@ public class DataBase extends AppCompatActivity {
 
     }
 
+    public float[] getNumber(){
+        float[] correctCount = new float[10];
+
+        sql = "SELECT SUM(isCorrect), questionNo FROM TestsDetails GROUP BY questionNo ORDER BY questionNo ASC;";
+        Cursor cursor = db.rawQuery(sql, null);
+        while (cursor.moveToNext()){
+            int i = cursor.getInt(1);
+            if(i != 0){
+                correctCount[i-1] = (float) cursor.getInt(0);
+            }
+        }
+
+        return correctCount;
+    }
+
+    public void dropTable(){
+
+
+        sql = "DROP TABLE IF EXISTS "+ TABLE_NAME_TD +";";
+        db.execSQL(sql);
+        sql = "DROP TABLE IF EXISTS "+ TABLE_NAME_TL +";";
+        db.execSQL(sql);
+
+    }
+
 }

@@ -15,6 +15,7 @@ public class Finish extends AppCompatActivity {
     TextView tvCong, tvResult;
     String playerName;
     int result;
+    double avgSpent;
     double duration;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,13 +30,16 @@ public class Finish extends AppCompatActivity {
         playerName = intent.getStringExtra("playerName");
         result = intent.getIntExtra("result", 0);
         duration = intent.getDoubleExtra("duration", 0);
+        avgSpent = intent.getDoubleExtra("avgSpent", 0);
+
 
         tvCong = findViewById(R.id.tvConG);
         tvResult = findViewById(R.id.tvResult);
 
         tvCong.setText("Congratulation!\n\n"+playerName);
         tvResult.setText("Your Score: " +(int)(result/5.0*100.0) +"% \n\n" +
-                "Time spended："+(int)duration+"s");
+                "Time spent："+(int)duration+"s\n\n" +
+                "Average time on each question: "+avgSpent+"s");
 
     }
 

@@ -1,5 +1,6 @@
 package com.example.assignment;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,6 +28,11 @@ public class ScoreBoard extends AppCompatActivity{
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN); //enable full screen
         setContentView(R.layout.activity_scoreboard);
+
+        initiate();
+    }
+
+    public void initiate(){
         db = new DataBase();
 
         dataArray = db.getTestRecord();
@@ -46,19 +52,19 @@ public class ScoreBoard extends AppCompatActivity{
         recycler_view.setHasFixedSize(true);
         recycler_view.setAdapter(adapter);
         recycler_view.setLayoutManager(new LinearLayoutManager(this));
-
-//        adapter.setItemClickListener(new OnRecyclerViewClickListener() {
-//            @Override
-//            public void onItemClickListener(View view) {
-//                int position = recycler_view.getChildAdapterPosition(view);
-//                selection.setText("Planet - " + dataArray[position]);
-//            }
-//        });
     }
 
     public void getChart(View v){
         v.startAnimation(AnimationUtils.loadAnimation(this, R.anim.imagebtn));
         Intent intent = new Intent(ScoreBoard.this, Chart.class);
-        startActivity(intent);
+        startActivityForResult(intent, 3434);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == RESULT_OK && requestCode == 3434){
+            finish();
+        }
     }
 }

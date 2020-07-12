@@ -84,29 +84,38 @@
         android:paddingLeft="50dp"
         android:paddingRight="50dp"
         android:paddingBottom="40dp"
-        android:paddingTop="0dp">
+        android:paddingTop="10dp"
+        android:background="@drawable/testbg">
         <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:id="@+id/A1"
+            android:theme="@style/testBtn"
+            android:textColor="#FFFFFF"
             android:layout_marginBottom="10dp"
             android:onClick="btnA1"/>
         <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:id="@+id/A2"
+            android:theme="@style/testBtn"
+            android:textColor="#FFFFFF"
             android:layout_marginBottom="10dp"
             android:onClick="btnA2"/>
         <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:id="@+id/A3"
+            android:theme="@style/testBtn"
+            android:textColor="#FFFFFF"
             android:layout_marginBottom="10dp"
             android:onClick="btnA3"/>
         <Button
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:id="@+id/A4"
+            android:theme="@style/testBtn"
+            android:textColor="#FFFFFF"
             android:layout_marginBottom="10dp"
             android:onClick="btnA4"/>
 

@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -26,12 +27,16 @@ public class MainActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN); //enable full screen
         setContentView(R.layout.activity_main);
         start = findViewById(R.id.start);
+        DataBase db = new DataBase();
+        db.createQL();
+        db.createTLTD();
 
 
     }
 
     public void start(final View view){
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
+        view.startAnimation(AnimationUtils.loadAnimation(this, R.anim.imagebtn));
+        final AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
         alertDialog.setTitle("Player Name");
         alertDialog.setMessage("Enter player name");
 
@@ -49,10 +54,12 @@ public class MainActivity extends AppCompatActivity {
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         String playerName = input.getText().toString();
-                        if (playerName != "") {
+                        if (!playerName.equals("") && playerName.length() > 2 && playerName.length() < 12) {
                             Intent myIntent1 = new Intent(MainActivity.this, Create.class);
                             myIntent1.putExtra("playerName",playerName);
                             startActivity(myIntent1);
+                        }else {
+                            Toast.makeText(MainActivity.this, "Invalid player name! \nPlease enter text within 3 to 12 character!", Toast.LENGTH_LONG).show();
                         }
                     }
                 });
@@ -60,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void scoreBoard(View v){
+        v.startAnimation(AnimationUtils.loadAnimation(this, R.anim.imagebtn));
         Intent myIntent = new Intent(MainActivity.this, ScoreBoard.class);
         startActivity(myIntent);
     }

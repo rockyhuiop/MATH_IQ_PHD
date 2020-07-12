@@ -64,8 +64,6 @@ public class Create extends AppCompatActivity implements OnDownloadFinishListene
             }
 
             // initial Data Base
-            db.createQL();
-            db.createTLTD();
             for(int i = 0; i < question.length; i++){
                 db.insertQuestion(i+1, question[i], answers[i]);
             }
