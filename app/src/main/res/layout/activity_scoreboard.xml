@@ -26,6 +26,13 @@
             <ImageButton
                 android:layout_width="40dp"
                 android:layout_height="40dp"
+                android:src="@drawable/ic_database"
+                android:layout_marginLeft="310dp"
+                android:background="#DAC9A6"
+                android:onClick="getDB"/>
+            <ImageButton
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_marginLeft="360dp"
                 android:background="#DAC9A6"
                 android:onClick="getChart"

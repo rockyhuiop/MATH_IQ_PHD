@@ -204,4 +204,36 @@ public class DataBase extends AppCompatActivity {
 
     }
 
+
+    public String showQL(){
+        sql = "SELECT * FROM "+TABLE_NAME_QL+";";
+        String dataStrHeader = String.format("%-10s %-50s %-6s\n","QuestionNo", "Question", "Answer");
+        Cursor cursor = db.rawQuery(sql, null);
+        String dataStr = dataStrHeader;
+        while (cursor.moveToNext()){
+            int questionNo = cursor.getInt(0);
+            String question = cursor.getString(1);
+            int answer = cursor.getInt(2);
+            dataStr += String.format("%-10s %-50s %-6s\n", questionNo, question, answer);
+        }
+        return dataStr;
+    }
+
+    public String showTL(){
+        sql = "SELECT * FROM "+TABLE_NAME_TL+";";
+        String dataStrHeader = String.format("%-6s %-12s %-10s %-8s %-5s %-2s\n","TestNo", "PlayerName", "TestDate","TestTime","Duration","CorrectCount");
+        Cursor cursor = db.rawQuery(sql, null);
+        String dataStr = dataStrHeader;
+        while (cursor.moveToNext()){
+            int testNo = cursor.getInt(0);
+            String playerName = cursor.getString(1);
+            String testDate = cursor.getString(2).substring(0,10);
+            String testTime = cursor.getString(3).substring(0,8);
+            double duration = cursor.getDouble(4);
+            int correctCount = cursor.getInt(5);
+            dataStr += String.format("%-16s %-16s %-10s %-10s %-12s %-10s\n",testNo, playerName, testDate, testTime, (int)duration+"s", correctCount);
+        }
+        return dataStr;
+    }
+
 }

@@ -28,7 +28,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         start = findViewById(R.id.start);
         DataBase db = new DataBase();
-        db.createQL();
         db.createTLTD();
 
 

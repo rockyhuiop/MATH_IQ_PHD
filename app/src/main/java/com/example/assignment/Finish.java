@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -37,19 +38,21 @@ public class Finish extends AppCompatActivity {
         tvResult = findViewById(R.id.tvResult);
 
         tvCong.setText(playerName);
-        tvResult.setText("Your Score: " +(int)(result/5.0*100.0) +"% \n\n" +
-                "Time spent："+(int)duration+"s\n\n" +
+        tvResult.setText("Your Score: " +(int)(result/5.0*100.0) +"%\n\n" +
+                "Time spent: "+(int)duration+"s\n\n" +
                 "Average time on each question: "+String.format("%.2f",avgSpent)+"s");
 
     }
 
     public void goBack(View v){
+        v.startAnimation(AnimationUtils.loadAnimation(this, R.anim.imagebtn));
         Intent intent = new Intent(Finish.this, MainActivity.class);
         startActivity(intent);
         finish();
     }
 
     public void goScoreboard(View v){
+        v.startAnimation(AnimationUtils.loadAnimation(this, R.anim.imagebtn));
         Intent intent = new Intent(Finish.this, ScoreBoard.class);
         startActivity(intent);
         finish();

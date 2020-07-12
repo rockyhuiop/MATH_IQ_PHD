@@ -67,4 +67,10 @@ public class ScoreBoard extends AppCompatActivity{
             finish();
         }
     }
+
+    public void getDB(View v){
+        v.startAnimation(AnimationUtils.loadAnimation(this, R.anim.imagebtn));
+        Intent intent = new Intent(this, QuestionsLog.class);
+        startActivity(intent);
+    }
 }
