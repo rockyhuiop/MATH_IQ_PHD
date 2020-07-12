@@ -10,4 +10,5 @@
     <color name="itemFontColor">#FFFFFF</color>
     <color name="wrong">#734338</color>
     <color name="right">#86C166</color>
+    <color name="ring">#FDECF0</color>
 </resources>

@@ -33,18 +33,25 @@ public class Finish extends AppCompatActivity {
         avgSpent = intent.getDoubleExtra("avgSpent", 0);
 
 
-        tvCong = findViewById(R.id.tvConG);
+        tvCong = findViewById(R.id.tvCong);
         tvResult = findViewById(R.id.tvResult);
 
-        tvCong.setText("Congratulation!\n\n"+playerName);
+        tvCong.setText(playerName);
         tvResult.setText("Your Score: " +(int)(result/5.0*100.0) +"% \n\n" +
                 "Time spent："+(int)duration+"s\n\n" +
-                "Average time on each question: "+avgSpent+"s");
+                "Average time on each question: "+String.format("%.2f",avgSpent)+"s");
 
     }
 
     public void goBack(View v){
         Intent intent = new Intent(Finish.this, MainActivity.class);
         startActivity(intent);
+        finish();
+    }
+
+    public void goScoreboard(View v){
+        Intent intent = new Intent(Finish.this, ScoreBoard.class);
+        startActivity(intent);
+        finish();
     }
 }
